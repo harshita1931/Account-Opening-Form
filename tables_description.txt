@@ -1,0 +1,85 @@
+AIT :-
+'$acc_type',	'$branch',	'$copy',	'$nomination',	'$nominee_name',	'$amt_rs',	'$payment_mode',	'$cheque_no',	'$cheque_date',	'$drawn_on',	'$branch',	'$name_cust',	'$AOI',	'$acc_no',	'$custid',	'$card_opt',	'$card_no',	'$email',	'$mob_banking_no',	'$name_of_co',	'$AQB'
+
+
+
+PIT :-
+
+'user_type', '$appl_prefix',	'$appl_name', '$bldg_name',	'$road',	'$landmark',	'$city',	'$pin',	'$state',	'$country',	'$tel',	'$ext',	'$std',	'$telR',	'$mobile'
+
+
+BT :-
+
+'$occupation',	'$occupationother',	'$emp_with',	'$emp_with_other',	'$yrs',	'$nat_bus',	'$nat_bus_other',	'$DOI',	'$type_comp',	'$type_comp_other',	'$type_prof',	'$type_prof_other',	'$sof',	'$sof_other',	'$GAI',	'$res_type'
+
+
+CREATE TABLE PIT (
+  UserID int NOT NULL AUTO_INCREMENT,
+  UserType varchar(30) ,
+  NamePrefix varchar(10) ,
+  FullName varchar(150) ,
+  Bldg varchar(100) ,
+  Road varchar(100) ,
+  Landmark varchar(150) ,
+  City varchar(100) ,
+  PIN int ,
+  State varchar(100) ,
+  Country varchar(100) ,
+  TelO int ,
+  EXT int ,
+  STD int ,
+  TelR int ,
+  Mobile int ,
+  PRIMARY KEY (UserID)
+);
+
+CREATE TABLE AIT (
+  UserID int NOT NULL AUTO_INCREMENT,
+  AccType varchar(30) ,
+  BranchName varchar(100) ,
+  Document varchar(100) ,
+  Nomination varchar(50) ,
+  Nominee varchar(150) ,
+  Amount float ,
+  Payment varchar(100) ,
+  ChequeNo varchar(100) ,
+  ChequeDate date ,
+  DrawnBank varchar(100) ,
+  DrawnBranch varchar(100) ,
+  Payable varchar(150) ,
+  OperatingInst varchar(100) ,
+  AccNo varchar(100) ,
+  CustID varchar(100) ,
+  CardChoice varchar(100) ,
+  CardNo varchar(100) ,
+  Email varchar(150) ,
+  MobileBankingMobNo int ,
+  NameOfCo varchar(150) ,
+  AQB int ,
+  PRIMARY KEY (UserID),
+  KEY UserID (UserID),
+  CONSTRAINT AIT_ibfk_1 FOREIGN KEY (UserID) REFERENCES PIT (UserID)
+) ;
+
+
+CREATE TABLE BT (
+  UserID int NOT NULL AUTO_INCREMENT,
+  Occupation varchar(100) ,
+  OccupationOther varchar(100) ,
+  EmployedWith varchar(150) ,
+  EmployedWithOther varchar(150) ,
+  SelfEmployedYears int ,
+  NatOfBus varchar(100) ,
+  NatOfBusOther varchar(150) ,
+  DateOfIncor date ,
+  CompType varchar(100) ,
+  CompTypeOther varchar(100) ,
+  SelfEmplProf varchar(100) ,
+  SelfEmplProfOther varchar(100) ,
+  SourceOfFunds varchar(100) ,
+  SourceOfFundsOther varchar(100) ,
+  AnnualIncome varchar(100) ,
+  ResidentType varchar(100) ,
+  PRIMARY KEY (UserID),
+  CONSTRAINT BT_ibfk_1 FOREIGN KEY (UserID) REFERENCES PIT (UserID)
+) ;
